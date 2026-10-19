@@ -2,8 +2,8 @@
 #Fungsi tambahan untuk bantuan geometri (effective_size, occupied_cells)
 from dataclasses import dataclass 
 import copy
-HORIZONTAL = "Horizontal"
-VERTICAL = "Vertical"
+HORIZONTAL = "Horizontal"   #membuat konstanta orientasi horizontal lebih stabil, jika salah penulisan akan tidak jalan maka terjadi error
+VERTICAL = "Vertical"       #membuat konstanta orientasi vertical lebih stabil, jika salah penulisan akan tidak jalan maka terjadi error
 
 #Spesifikasi Entitas Vehicle
 @dataclass
@@ -36,10 +36,10 @@ def effective_size(vehicle):
 #x untuk kolom, y untuk baris, mulai dari (0,0)
 def occupied_cells(vehicle, x, y):
     width, length = effective_size(vehicle)
-    result = set()
-    for dx in range(width):
-        for dy in range(length):
-            result.add((x + dx, y + dy))
+    result = set()                              #set kosong untuk menyimpan x dan y (sel yang ditempati)
+    for dx in range(width):                     #perulangan untuk setiap sel yang ditempati oleh x (kolomnya)
+        for dy in range(length):                #perulangan untuk setiap sel yang ditempati oleh y (barisnya)
+            result.add((x + dx, y + dy))        #tambah setiap hasil perulangan x dan y ke set yang awalnya kosong
     return result
 
 #Spesifikasi Kelas State

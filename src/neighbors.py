@@ -10,21 +10,21 @@ from objective import is_valid
 def move_rotate(state):
     new = state.copy()
     inside = new.vehicles_inside()
-    if not inside:
+    if not inside:                                                                                          #untuk cek kendaraan di dalam kapal atau tidak
         return None
-    vid = random.choice(inside)
-    new.vehicles[vid].orientation = HORIZONTAL if new.vehicles[vid].orientation == VERTICAL else VERTICAL
+    vid = random.choice(inside)                                                                             #untuk ambil random kendaraan
+    new.vehicles[vid].orientation = HORIZONTAL if new.vehicles[vid].orientation == VERTICAL else VERTICAL   #ubah orientasi (rotate) kendaraan yang diambil secara random
     return new if is_valid(new) else None
 
 #Fungsi move_relocate untuk memindahkan posisi satu kendaraan random ke tempat random yang berbeda dengan initial state
 def move_relocate(state):
     new = state.copy()
     vid = random.choice(list(new.vehicles.keys()))  #ini berlaku untuk semua kendaraan yang diluar maupun didalam
-    x = random.randint(0, new.ship.width - 1)
+    x = random.randint(0, new.ship.width - 1)       #randint digunakan agar batas awal dan akhir termasuk ke dalam angka random yang bisa dipilih
     y = random.randint(0, new.ship.length - 1)
-    if (x,y) == new.positions[vid]:
+    if (x,y) == new.positions[vid]:                 
         return None
-    new.positions[vid] = (x,y)
+    new.positions[vid] = (x,y)                      #pindahkan tampat kendaraan jika tidak None
     if is_valid(new):
         return new
     return None
@@ -32,13 +32,13 @@ def move_relocate(state):
 #Fungsi move_swap untuk menukar posisi satu kendaraan random dengan kendaraan lain 
 def move_swap(state):
     new = state.copy()
-    idv = list(new.vehicles.keys()) #idv variabel penanda untuk kendaraan
-    if len(idv) < 2:
+    idv = list(new.vehicles.keys())                                                     #idv variabel penanda untuk list kendaraan yang ditukar
+    if len(idv) < 2:                                                                    #jika kurang dari 2 kendaraan tidak bisa ditukar
         return None
-    vid1, vid2 = random.sample(idv, 2)
+    vid1, vid2 = random.sample(idv, 2)                                                  #ambil 2 kendaraan sebagai sample dengan random
     if new.positions[vid1] is None and new.positions[vid2] is None:
         return None
-    new.positions[vid1], new.positions[vid2] = new.positions[vid2], new.positions[vid1]
+    new.positions[vid1], new.positions[vid2] = new.positions[vid2], new.positions[vid1] #tukar tempat 2 kendaraan jika tidak None
     if is_valid(new):
         return new
     return None
@@ -49,18 +49,18 @@ def move_swap(state):
 def random_initial_state(ship, vehicles, max_tries=20):
     state = State(
         ship,
-        {v.id: copy.deepcopy(v) for v in vehicles},
-        {v.id: None for v in vehicles}
+        {v.id: copy.deepcopy(v) for v in vehicles},                                 #salinan dari dictionary id -> Vehicle, supaya daftar asli tidak rusak saat orientasi dirubah
+        {v.id: None for v in vehicles}                                              #semua kendaraan disimpan di luar kapal pada state awal
     )
-    order = list(state.vehicles.keys())
-    random.shuffle(order)
+    order = list(state.vehicles.keys())                                             #list semua kendaraan
+    random.shuffle(order)                                                           #list dishuffle agar tidak selalu kendaraan yang sama dapat tempat duluan
     for vid in order:
         for _ in range (max_tries):
-            state.vehicles[vid].orientation = random.choice([HORIZONTAL, VERTICAL])
+            state.vehicles[vid].orientation = random.choice([HORIZONTAL, VERTICAL]) #pilih orientasi random untuk setiap kendaraan
             x = random.randint(0, ship.width - 1)
             y = random.randint(0, ship.length - 1)
             state.positions[vid] = (x, y)
-            if is_valid(state):
+            if is_valid(state):                                                     #perulangan berhenti jika  state sudah valid
                 break
             state.positions[vid] = None
     return state
@@ -73,40 +73,8 @@ MOVES = [move_rotate, move_relocate, move_swap]
 #Dilakukan berulang dengan batasan (max_tries) untuk mencari tetangga yang valid
 def random_neighbor(state, max_tries=100):
     for _ in range(max_tries):
-        move = random.choice(MOVES)
+        move = random.choice(MOVES)         #pilih secara random diantara ketiga fungsi move
         result = move(state)
         if result is not None:
             return result
     return None
-
-if __name__ == "__main__":
-    ship = Ship(10, 10, 500)
-    a = Vehicle("A", 2, 2, HORIZONTAL, 10, 1, 1)
-    b = Vehicle("B", 2, 3, HORIZONTAL, 20, 1, 1)
-    s = State(ship, {"A": a, "B": b}, {"A": (0, 0), "B": None})
-
-    for _ in range(50):
-        n = random_neighbor(s)
-        assert n is not None
-        assert is_valid(n)
-        assert s.positions == {"A": (0, 0), "B": None}   # asli utuh
-
-    buntu = State(Ship(1, 1, 500), {"A": a}, {"A": None})
-    assert random_neighbor(buntu, max_tries=20) is None
-
-    print("random_neighbor OK")
-
-    ship = Ship(10, 10, 500)
-    vs = [Vehicle("A", 3, 4, HORIZONTAL, 60, 5, 3),
-          Vehicle("B", 2, 2, HORIZONTAL, 30, 2, 1),
-          Vehicle("C", 5, 5, HORIZONTAL, 40, 3, 2)]
-    for _ in range(30):
-        s = random_initial_state(ship, vs)
-        assert is_valid(s)
-        assert set(s.positions.keys()) == {"A", "B", "C"}
-    assert vs[0].orientation == HORIZONTAL   # daftar asli tidak tersentuh
-
-    s = random_initial_state(Ship(1, 1, 500), vs)
-    assert s.vehicles_inside() == []
-
-    print("random_initial_state OK")

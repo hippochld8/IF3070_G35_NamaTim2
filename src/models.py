@@ -32,7 +32,7 @@ def effective_size(vehicle):
     return vehicle.length, vehicle.width
 
 #Fungsi sel yang ditempati
-#Parameter x,y itu pojok kiri atas dimulainya suatu kapal diletakkan
+#Parameter x,y itu pojok kiri atas dimulainya suatu kendaraan diletakkan di grid kapal
 #x untuk kolom, y untuk baris, mulai dari (0,0)
 def occupied_cells(vehicle, x, y):
     width, length = effective_size(vehicle)
@@ -57,10 +57,10 @@ class State:
             dict(self.positions)            #positions pakai dict karena isinya tuple atau None
         )
 
-#Fungsi vehicles_inside untuk mengembalikan kapal yang diangkut
+#Fungsi vehicles_inside untuk mengembalikan kendaraan yang diangkut oleh kapal
     def vehicles_inside(self):
         return [vehicles_id for vehicles_id, pos in self.positions.items() if pos is not None]
 
-##Fungsi vehicles_outside untuk mengembalikan kapal yang tidak diangkut
+##Fungsi vehicles_outside untuk mengembalikan kendaraan yang tidak diangkut oleh kapal
     def vehicles_outside(self):
         return [vehicles_id for vehicles_id, pos in self.positions.items() if pos is None]

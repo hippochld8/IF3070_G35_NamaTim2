@@ -1,3 +1,5 @@
+# File genetic_algorithm.py untuk algoritma Genetic Algorithm pada kasus kendaraan dan kapal
+# Mengembalikan dictionary hasil: Algorithm Initial State, Final State, History Max, History Avg, Duration, Iterations, Pop Size
 import random
 import copy
 import time
@@ -5,21 +7,27 @@ from models import State
 from objective import objective, is_valid
 from neighbors import random_initial_state, random_neighbor
 
-def init_population(ship, vehicles, popu_size):
-    return [random_initial_state(ship, vehicles) for _ in range(popu_size)]
+# Fungsi init_population untuk membuat populasi awal berisi state acak yang valid
+def init_population(ship, vehicles, pop_size):
+    return [random_initial_state(ship, vehicles) for _ in range(pop_size)]
 
+# Fungsi tournament_selection untuk memilih satu parent dari populasi
 def tournament_selection(population, k=3):
     k=min(k, len(population))
-    peserta = random.sample(population, k)
-    return max(peserta, key=objective)
+    participants = random.sample(population, k)
+    return max(participants, key=objective)
 
+# Fungsi mutate untuk mengubah state sedikit dengan peluang mutation_rate
 def mutate(state, mutation_rate=0.2):
     if random.random() < mutation_rate:
-        hasil = random_neighbor(state)
-        if hasil is not None:
-            return hasil
+        neighbor = random_neighbor(state)
+        if neighbor is not None:
+            return neighbor
     return state
 
+# Fungsi crossover untuk membuat satu child dari dua parent
+# Tiap kendaraan diambil dari salah satu parent, lalu diperbaiki:
+# kendaraan yang membuat state tidak valid dilewati (tetap di luar kapal)
 def crossover(parent1, parent2):
     child = State(
         parent1.ship, copy.deepcopy(parent1.vehicles),
@@ -37,10 +45,10 @@ def crossover(parent1, parent2):
             child.positions[vid] = None
     return child
 
-def genetic_algorithm(ship, vehicles, popu_size, iterations, mutation_rate=0.2):
+def genetic_algorithm(ship, vehicles, pop_size, iterations, mutation_rate=0.2):
     start = time.perf_counter()
 
-    population = init_population(ship, vehicles, popu_size)
+    population = init_population(ship, vehicles, pop_size)
     best = max(population, key=objective)
     initial = best.copy()
     history_max = []
@@ -53,10 +61,10 @@ def genetic_algorithm(ship, vehicles, popu_size, iterations, mutation_rate=0.2):
 
        best = max(population, key=objective)
        new_population = [best.copy()]
-       while len(new_population) < popu_size:
+       while len(new_population) < pop_size:
            a = tournament_selection(population)
            b = tournament_selection(population)
-           child = crossover(a, b)
+           child = crossover(parent1=a, parent2=b)
            child = mutate(child, mutation_rate)
            new_population.append(child)
        population = new_population
@@ -64,12 +72,13 @@ def genetic_algorithm(ship, vehicles, popu_size, iterations, mutation_rate=0.2):
     final = max(population, key=objective)
     duration = time.perf_counter() - start
     return {
-         "initial_state": initial,
-        "final_state": final,
-        "history_max": history_max,
-        "history_avg": history_avg,
-        "duration": duration,
-        "iterations": iterations,
-        "popu_size": popu_size,
+        "Algorithm": "Genetic Algorithm",
+        "Initial State": initial,
+        "Final State": final,
+        "History Max": history_max,
+        "History Avg": history_avg,
+        "Duration": duration,
+        "Iterations": iterations,
+        "Pop Size": pop_size,
     }
 

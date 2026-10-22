@@ -45,3 +45,17 @@ def plot_curve(history, title="Objective vs Iterasi", save_path=None):
     if save_path is not None:
         fig.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
+
+#Fungsi plot_sa_probability untuk plot probabilitas penerimaan e^(dE/T) terhadap iterasi (khusus SA)
+#prob_history = list angka, panjang = iterations (satu nilai per iterasi, tanpa nilai awal)
+#Catatan: 1.0 untuk neighbor lebih baik, 0.0 untuk iterasi tanpa neighbor valid
+def plot_sa_probability(prob_history, title="SA: e^(dE/T) vs Iterasi", save_path=None):
+    fig, ax = plt.subplots(figsize=(8, 4))
+    ax.plot(range(1, len(prob_history) + 1), prob_history)
+    ax.set_xlabel("Iterasi")
+    ax.set_ylabel("e^(dE/T)")
+    ax.set_title(title)
+    ax.grid(True)
+    if save_path is not None:
+        fig.savefig(save_path, dpi=150, bbox_inches="tight")
+    plt.close(fig)

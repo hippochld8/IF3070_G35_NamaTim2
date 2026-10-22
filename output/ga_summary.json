@@ -1,0 +1,164 @@
+[
+  {
+    "experiment": "exp1",
+    "run": 1,
+    "Population Size": 30,
+    "Iterations": 50,
+    "Initial Value": 433,
+    "Final Value": 470,
+    "Duration": 0.3994
+  },
+  {
+    "experiment": "exp1",
+    "run": 2,
+    "Population Size": 30,
+    "Iterations": 50,
+    "Initial Value": 468,
+    "Final Value": 478,
+    "Duration": 0.4465
+  },
+  {
+    "experiment": "exp1",
+    "run": 3,
+    "Population Size": 30,
+    "Iterations": 50,
+    "Initial Value": 433,
+    "Final Value": 468,
+    "Duration": 0.4535
+  },
+  {
+    "experiment": "exp1",
+    "run": 1,
+    "Population Size": 30,
+    "Iterations": 100,
+    "Initial Value": 473,
+    "Final Value": 503,
+    "Duration": 0.8027
+  },
+  {
+    "experiment": "exp1",
+    "run": 2,
+    "Population Size": 30,
+    "Iterations": 100,
+    "Initial Value": 461,
+    "Final Value": 498,
+    "Duration": 0.8486
+  },
+  {
+    "experiment": "exp1",
+    "run": 3,
+    "Population Size": 30,
+    "Iterations": 100,
+    "Initial Value": 478,
+    "Final Value": 478,
+    "Duration": 0.8312
+  },
+  {
+    "experiment": "exp1",
+    "run": 1,
+    "Population Size": 30,
+    "Iterations": 200,
+    "Initial Value": 478,
+    "Final Value": 513,
+    "Duration": 1.688
+  },
+  {
+    "experiment": "exp1",
+    "run": 2,
+    "Population Size": 30,
+    "Iterations": 200,
+    "Initial Value": 458,
+    "Final Value": 478,
+    "Duration": 1.6913
+  },
+  {
+    "experiment": "exp1",
+    "run": 3,
+    "Population Size": 30,
+    "Iterations": 200,
+    "Initial Value": 453,
+    "Final Value": 528,
+    "Duration": 1.6977
+  },
+  {
+    "experiment": "exp2",
+    "run": 1,
+    "Population Size": 10,
+    "Iterations": 100,
+    "Initial Value": 461,
+    "Final Value": 473,
+    "Duration": 0.2817
+  },
+  {
+    "experiment": "exp2",
+    "run": 2,
+    "Population Size": 10,
+    "Iterations": 100,
+    "Initial Value": 428,
+    "Final Value": 436,
+    "Duration": 0.2387
+  },
+  {
+    "experiment": "exp2",
+    "run": 3,
+    "Population Size": 10,
+    "Iterations": 100,
+    "Initial Value": 391,
+    "Final Value": 403,
+    "Duration": 0.2261
+  },
+  {
+    "experiment": "exp2",
+    "run": 1,
+    "Population Size": 30,
+    "Iterations": 100,
+    "Initial Value": 446,
+    "Final Value": 458,
+    "Duration": 0.8239
+  },
+  {
+    "experiment": "exp2",
+    "run": 2,
+    "Population Size": 30,
+    "Iterations": 100,
+    "Initial Value": 473,
+    "Final Value": 473,
+    "Duration": 0.718
+  },
+  {
+    "experiment": "exp2",
+    "run": 3,
+    "Population Size": 30,
+    "Iterations": 100,
+    "Initial Value": 466,
+    "Final Value": 496,
+    "Duration": 1.0105
+  },
+  {
+    "experiment": "exp2",
+    "run": 1,
+    "Population Size": 60,
+    "Iterations": 100,
+    "Initial Value": 478,
+    "Final Value": 478,
+    "Duration": 1.6506
+  },
+  {
+    "experiment": "exp2",
+    "run": 2,
+    "Population Size": 60,
+    "Iterations": 100,
+    "Initial Value": 451,
+    "Final Value": 523,
+    "Duration": 1.8672
+  },
+  {
+    "experiment": "exp2",
+    "run": 3,
+    "Population Size": 60,
+    "Iterations": 100,
+    "Initial Value": 453,
+    "Final Value": 478,
+    "Duration": 1.6414
+  }
+]

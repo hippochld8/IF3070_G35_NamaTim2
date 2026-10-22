@@ -1,5 +1,8 @@
 #File visualization.py untuk fungsi yang menggambar state dan plot hasil eksperimen
 #Menggunakan matplotlib untuk visualisasi
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 from models import effective_size

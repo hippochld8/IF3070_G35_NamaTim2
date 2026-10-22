@@ -1,0 +1,23 @@
+[
+  {
+    "run": 1,
+    "Initial Value": 403,
+    "Final Value": 415,
+    "Iterations": 393,
+    "Duration": 0.1969
+  },
+  {
+    "run": 2,
+    "Initial Value": 366,
+    "Final Value": 403,
+    "Iterations": 239,
+    "Duration": 0.1022
+  },
+  {
+    "run": 3,
+    "Initial Value": 378,
+    "Final Value": 453,
+    "Iterations": 305,
+    "Duration": 0.2471
+  }
+]

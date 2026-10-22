@@ -59,3 +59,18 @@ def plot_sa_probability(prob_history, title="SA: e^(dE/T) vs Iterasi", save_path
     if save_path is not None:
         fig.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
+
+# plot_ga_curve: plot nilai objective maksimum dan rata-rata populasi terhadap iterasi (generasi).
+# max_history, avg_history = list angka dengan panjang sama, indeks = nomor iterasi.
+def plot_ga_curve(max_history, avg_history, title="GA: Objective vs Iterasi", save_path=None):
+    fig, ax = plt.subplots(figsize=(8, 4))
+    ax.plot(range(len(max_history)), max_history, label="Maksimum")
+    ax.plot(range(len(avg_history)), avg_history, label="Rata-rata")
+    ax.set_xlabel("Iterasi")
+    ax.set_ylabel("Total ShippingFee (juta rupiah)")
+    ax.set_title(title)
+    ax.grid(True)
+    ax.legend()
+    if save_path is not None:
+        fig.savefig(save_path, dpi=150, bbox_inches="tight")
+    plt.close(fig)

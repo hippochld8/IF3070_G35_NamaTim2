@@ -1,5 +1,5 @@
 #File simulated_annealing.py, algoritma Simulated Annealing untuk memaksimalkan objective (total shipping fee)
-#Format hasil mengikuti kesepakatan tim: initial_state, final_state, history, duration, iterations + metrik khusus SA
+#Format hasil (key dictionary) disamakan dengan hill_climbing.py + metrik khusus SA (Prob History, Stuck Count)
 import math
 import random
 import time
@@ -58,13 +58,16 @@ def simulated_annealing(ship, vehicles, initial_temp=100.0, cooling_rate=0.995,
 
     duration = time.perf_counter() - start
     return {
-        "initial_state": initial,
-        "final_state": current,
-        "history": history,
-        "duration": duration,
-        "iterations": iterations,
-        "prob_history": prob_history,
-        "stuck_count": stuck_count,
-        "initial_temp": initial_temp,
-        "cooling_rate": cooling_rate,
+        "Algorithm": "Simulated Annealing",
+        "Initial State": initial,
+        "Final State": current,
+        "Initial Value": history[0],
+        "Final Value": current_value,
+        "History": history,
+        "Duration": duration,
+        "Iterations": iterations,
+        "Prob History": prob_history,
+        "Stuck Count": stuck_count,
+        "Initial Temp": initial_temp,
+        "Cooling Rate": cooling_rate,
     }

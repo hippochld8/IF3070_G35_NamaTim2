@@ -1,0 +1,26 @@
+[
+  {
+    "run": 1,
+    "Initial Value": 385,
+    "Final Value": 563,
+    "Iterations": 4601,
+    "Duration": 2.6436,
+    "Stuck Count": 632
+  },
+  {
+    "run": 2,
+    "Initial Value": 380,
+    "Final Value": 553,
+    "Iterations": 4601,
+    "Duration": 2.8435,
+    "Stuck Count": 195
+  },
+  {
+    "run": 3,
+    "Initial Value": 293,
+    "Final Value": 528,
+    "Iterations": 4601,
+    "Duration": 2.4021,
+    "Stuck Count": 499
+  }
+]

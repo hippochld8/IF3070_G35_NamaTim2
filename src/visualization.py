@@ -7,19 +7,19 @@ from models import effective_size
 #Fungsi draw_state untuk menggambarkan visualisasi kapal dan kendaraan di dalamnya
 def draw_state(state, value=None, title="State", save_path=None):
     fig, ax= plt.subplots(figsize=(6,6))
-    for i, vid in enumerate(state.vehicles_inside()):
+    for i, vid in enumerate(state.vehicles_inside()):                                               #gambar tiap kendaraan yang diangkut
         x, y = state.positions[vid]
         w, l = effective_size(state.vehicles[vid])
         ax.add_patch(Rectangle((x, y), w, l, facecolor=plt.cm.tab20(i % 20), edgecolor="black"))
         ax.text(x + w / 2, y + l / 2, vid, ha="center", va="center")
-    ax.set_xlim(0, state.ship.width)
+    ax.set_xlim(0, state.ship.width)                                                                #pengaturan sumbu
     ax.set_ylim(0, state.ship.length)
     ax.invert_yaxis()
     ax.set_aspect("equal")
     ax.set_xticks(range(state.ship.width + 1))
     ax.set_yticks(range(state.ship.length + 1))
     ax.grid(True)
-    outside = [
+    outside = [                                                                                                         #daftar kendaraan diluar kapal
         f"{vid} ({state.vehicles[vid].width}x{state.vehicles[vid].length}, fee {state.vehicles[vid].shipping_fee})"
         for vid in state.vehicles_outside()
     ]

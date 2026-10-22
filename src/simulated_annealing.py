@@ -68,6 +68,10 @@ def simulated_annealing(ship, vehicles, initial_temp=100.0, cooling_rate=0.995,
         "Iterations": iterations,
         "Prob History": prob_history,
         "Stuck Count": stuck_count,
-        "Initial Temp": initial_temp,
-        "Cooling Rate": cooling_rate,
+        "Params": {
+            "initial_temp": initial_temp,
+            "cooling_rate": cooling_rate,
+            "min_temp": min_temp,
+            "max_iterations": max_iterations,
+        },
     }
